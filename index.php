@@ -1,18 +1,28 @@
 <?php 
 
 require_once "vendor/autoload.php";
-//Create data variables
+// Create data variables
 $page_title = "Class Project Home Page";
 $greeting = "Welcome to my Website!";
-//Loading the twig template
+// Loading the twig template
 
 $loader = new \Twig\Loader\FilesystemLoader('templates');
 $twig  = new \Twig\Environment($loader);
 $template = $twig -> load('page.twig');
 
-//Render the output
+// Load the .env file
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__); 
+$dotenv->load();
+
+// Render the output
 
 echo $template -> render( ['title' => $page_title, 'greeting' => $greeting] ); //Add variables later
+
+
+
+
+
+
 
 // --------- Week 1 -------------
 //include "header.php";
