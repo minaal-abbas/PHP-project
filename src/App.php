@@ -8,6 +8,7 @@ use \Exception;
 class App{
     # In php, all variables start with '$'
     protected $config;
+    public $site_name;
 
     # Create Constructor
     public function __construct()
@@ -17,8 +18,11 @@ class App{
 
     private function loadConfig(){
         try{
-            $dotenv = Dotenv::createImmutable(__DIR__); 
+            // cwd = current working directory
+            $app_dir = getcwd();
+            $dotenv = Dotenv::createImmutable($app_dir); 
             $dotenv->load();
+            $this -> site_name = $_ENV['SITE_NAME'];
         } 
         catch( Exception $exception){
             $msg = $exception -> getMessage();
