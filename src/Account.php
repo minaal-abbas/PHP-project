@@ -7,6 +7,8 @@
     class Account extends Database{
         public function __construct(){
             try{
+                parent::__construct();
+
                 $db = new Database();   
                 
                 if(!$db){
@@ -23,6 +25,15 @@
 
         public function create($email, $password){
             // Execute query to create user with email and password
+
+            $create_query = 'INSERT INTO "Account (
+                email, 
+                password,
+                reset,
+                active,
+                created
+                VALUES(?,?,?,TRUE,NOW())
+            )"';
         }
 
         // For resetting password
